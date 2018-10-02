@@ -1,7 +1,12 @@
 <?php
         include('navbar.php');
+        if(!isset($_SESSION['emailid']))
+        {
+            header("location: http://localhost/FoodBlogger/modules/login.php");
+        }
+        
+        include('../assets/php/connection.php');
         $pid = $_REQUEST['p_id'];
-        session_start();
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +48,7 @@
       }
       .descriptionbox,.commentsbox{
           width: 1150px;
-    height: 200px;
+    height: 250px;
     background: black;
     color:white;
     left: 53%;
@@ -54,15 +59,47 @@
     padding: 20px 30px;
     opacity: .7;
       }
-      .iconbox{
+.iconbox{
           position: absolute;
           top:110%;
           left:10%;
           font-size: 40px;
       }
-      .glyphicon-thumbs-up:hover,.glyphicon-thumbs-down:hover{
+.glyphicon-thumbs-up:hover,.glyphicon-thumbs-down:hover{
           color: blue;
           cursor:pointer;
+          
+      }
+.commentsbox input[type="textarea"]{
+          border:none;
+        border-bottom: 1px solid white;
+        background: transparent;
+        outline: none;
+        height:40px;
+        color: white;
+        font-size: 16px;
+        width: 100%;
+      }
+.commentsbox input[type="submit"]
+{
+    width: 25%;
+    border:none;
+    border-radius: 20px;
+    outline:none;
+    height: 40px;
+    background: red;
+    color: white;
+    float:right;
+    font-size: 18px;
+}
+.commentsbox input[type="submit"]:hover{
+    cursor: pointer;
+    background: yellow;
+    color:black;
+}
+      .heading{
+          position:fixed;
+          display:block;
           
       }
     </style>
@@ -76,7 +113,18 @@
         document.getElementById("dislike").style.color="blue";
         document.getElementById("like").style.color="black";
     }
-    
+    $(document).ready(function(){
+                      var commentCount=2;
+        $(".showmore").click(function(){
+            commentCount=commentCount+2;
+            $(".comment").load("../assets/php/load-comments.php",{
+                commentnewCount:commentCount
+            });
+        });
+    });
+           
+
+        
     </script>
     
 </head>
@@ -84,13 +132,8 @@
                 
         <?php
         
-    $dbpass="jaydeep";
-    $dbhost="localhost";
-    $dbname="foodblog";
-    $dbuser="root";
     $url="http://localhost/FoodBlogger/assets/video/";
     
-    $conn=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
     if(!$conn){
         die('Connection Error'.mysqli_connect_error());
     }
@@ -109,7 +152,8 @@
             <hr>
             <p>".$row['recepie']."</p>
             </div>";
-        echo"<h1>".$row['dname']."</h1>";
+        echo"<div class=heading>
+            <h1>".$row['dname']."</h1></div>";
         ?>
         <div class="iconbox">
         <i class="glyphicon glyphicon-thumbs-up" onclick="return likeFunction(this);" id="like"></i>&ensp;&ensp;
@@ -130,14 +174,35 @@
         }
         ?>
         
-        <div class="commentsbox" style="top:185%;">
+        <div class="commentsbox" style="top:225%;height:700px">
             <h1>Comments</h1>
             <hr>
-            <i class="glyphicon glyphicon-chevron-down" style="position:absolute;top:80%;left:95%;"></i>
+            <?php
             
+                $sql="select * from comments limit 2";
+                $result=mysqli_query($conn,$sql);
+                if(mysqli_num_rows($result)>0){
+                    while($row=mysqli_fetch_assoc($result)){
+                        echo"<p>";
+                        echo $row['comment'];
+                        echo"<br>";
+                        echo $row['author'];
+                        echo"</p>";
+                    }
+                    
+                }
+                else{
+                    echo"There are no comments";
+                }
+            
+            ?>
             <p class="comment"></p>
-            <input type="textarea" placeholder="Comment here">
-            <input type="submit" name="comment">
+            <input type="submit" class="showmore" value="Show More Comments">
+            <br><br>
+            
+            <input type="textarea" placeholder="Comment here" class="cmtarea">
+            <br><br>
+            <input type="submit" name="addcomment" class="addcomment" value="Submit" >
             
         </div>
                 
@@ -145,4 +210,20 @@
     <?php
         include('footer.php');
     ?>
+    
 </html>
+<!--$(".addcomment").click(function(){
+    alert("working");
+    var comment=$('cmtarea').val();
+    var author=$_SESSION['fname']+" "+$_SESSION['lname'];
+    var pid=<?php $pid ?>;
+    if(comment!=''){
+        $.ajax({
+            url:"../assets/php/store-comments.php",
+            method:"POST",
+            data:{comment:comment,author:author,pid:pid},
+        });
+    }
+    }
+
+);-->

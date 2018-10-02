@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php include('navbar.php');?>
 <html>
 	<head>
 		<title>Sign up</title>
@@ -6,14 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="../assets/js/script.js"></script>
-        <?php
-        include('navbar.php');
-        ?>
-       
     </head>
 	<body >
         
-        <div class="loginbox" style="width: 320px;height: 700px;top:70%">
+        <div class="loginbox" style="width: 320px;height: 830px;top:70%">
             <h1>Sign up</h1>
             <form  action="../assets/php/signup.php" method="post" onsubmit="return checkForm(this);">
                 <p>First Name:</p>
@@ -30,7 +26,10 @@
                 <p>Male:<input type='radio' name='gender' value='m' ></p>
                 <p>Female:<input type='radio' name='gender' value='f' ></p>
                 <p>Other:<input type="radio" name="gender" value='o' ></p><br>
-                <input type='submit' id="subbtn">
+                <p style="display:inline">Captcha:</p><img src="../assets/php/captcha.php" alt="couldnt generate captacha">
+                <input type="text" placeholder="Enter the captcha code here" name="chek">
+                <input type='submit' id="submit" name="submit"><br>
+                <a href="login.php">Already a user</a>
             </form>
         </div>
         
