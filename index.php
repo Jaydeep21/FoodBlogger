@@ -1,4 +1,3 @@
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -109,26 +108,30 @@
     height: 101vh;
     background-color: black;
     color:white;
-    top: 163%;
+    top: 161%;
     left: 50%;
     opacity: .8;
     position:absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 70px 30px;
-    opacity: .6;
     font-family: 'Dancing Script', cursive;
     background-repeat: no-repeat;
     background-size: cover;
+    background-image:url('assets/img/7.jpg');
+    background-position: center;
+    object-fit: cover;
+    display: block;
       }
-        img{
+    img{
         display:block;
         width:100vw;
-        height:100vh;
+        height:105vh;
         object-fit:cover;
         max-width: 99vw;
         overflow-x: hidden;
-        opacity: .8;
+        opacity: .9;
+            
     }
     </style>
     <script>
@@ -139,7 +142,7 @@
                 i=1;
             }
             i++;
-            document.getElementById("back").src = imgurl + i + ".jpg";
+            document.getElementById("back").style.background = imgurl + i + ".jpg";
         },2000);
 
 
@@ -151,7 +154,7 @@
             <?php include('modules/navbar.php'); ?>
         </div>
         <div>
-            <img src='../FoodBlogger/assets/img/pizza.png' >            
+            <img src='../FoodBlogger/assets/img/pizza.png' style="position: absolute;top:7%;">            
         </div>
          <div class="container menu-link" style="position: absolute;top:80%;left:50%">
           <a href="#indexbox" id="scroll"><div class="chevron"></div>
@@ -162,7 +165,7 @@
         <div class="headingbox" style="position: absolute;top: 200px;left: 470px;"><center>
         <h1 style="font-size:100px;color:lightgrey;text-shadow: 2px 2px white;font-family: 'Pacifico', cursive;">Bhukkads</h1></center>
         </div>
-    <img src="FoodBlogger/assets/img/1.jpg" id="back">
+    
     <div class="indexbox" id="indexbox">
         
         <p>&ensp;<strong>W</strong>elcome to Bhukkads folks</p>
