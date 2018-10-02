@@ -33,6 +33,7 @@
             }
              else{
                 echo"Inserted successfully!!!";
+                 $_SESSION['password']=$pass;
                 header("Location: http://localhost/FoodBlogger/index.php");
             }
         }

@@ -29,7 +29,6 @@ function checkForm(form){
         form.phone.focus();
         return false;
        }
-    
     return true;
 }
 function getAge(DOB){

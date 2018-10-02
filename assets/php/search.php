@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include('../../modules/navbar.php');
 ?>
 <html>
@@ -16,14 +15,14 @@
         {
             position: absolute;
             left:10px;
-            width:190px;
-            height: 130px;
+            width:200px;
+            height: 140px;
             float:left;
             border:1px solid black;
         }
         .product{
             position: relative;
-            left:220px;
+            left:230px;
         }
     </style>
     
@@ -50,14 +49,14 @@
         echo"no results found";
     }
     else{
-        echo"<h2>You are searching for:".ucwords($ser);
+        echo"<h1>You are searching for:".ucwords($ser)."</h1>";
         echo"<hr>";
         while($row=mysqli_fetch_assoc($result)){
             echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$urli.$row['image']."></a>";
             echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
             <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
-            echo"Uploaded by: ".$_SESSION['fname']." ".$_SESSION['lname'];
-            echo"</div><hr>";
+            echo"Uploaded by: ".$row['name'];
+            echo"<br><br><br></div><hr>";
         }
     }
     }
@@ -68,15 +67,17 @@
         $cusqry="select * from videos where cusine='$cusinev'";
         $result=mysqli_query($conn,$cusqry);
         if(!$result){
-            echo"<script>alert query error</script>";
+            echo"<script>alert('query error');</script>";
         }
         else{
             echo"<h1>".ucwords($cusinev)." Cusines</h1>";
             echo"<hr>";
             while($row=mysqli_fetch_assoc($result)){
+            echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$urli.$row['image']."></a>";
             echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-            <p><bold>Description:</bold>&ensp;".$row['description']."</p>
-            </div><hr>";
+            <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
+            echo"Uploaded by: ".$row['name'];
+            echo"<br><br><br></div><hr>";
         }
         }
     }
@@ -88,12 +89,15 @@
             echo"<script>alert query error</script>";
         }
         else{
+            echo"<h1>".ucwords($navval)."s</h1>";
+            echo"<hr>";
             while($row=mysqli_fetch_assoc($result)){
-            echo "<h1>".ucwords($navval)." C</h1>";
-            echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-            <p><bold>Description:</bold>&ensp;".$row['description']."</p>
-            </div><hr>";
-        }
+                echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$urli.$row['image']."></a>";
+                echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
+                <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
+                echo"Uploaded by: ".$row['name'];
+                echo"<br><br><br></div><hr>";
+             }
         }
     }
     ?>

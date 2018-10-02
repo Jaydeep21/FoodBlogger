@@ -1,12 +1,18 @@
 <?php
+
+    session_start();
+    if(!isset($_SESSION['fname']){
+        header('lcation:http://localhost/FoodBlogger/modules/login.php')
+    }
     $dname=$_POST['dname'];
     $cusine=$_POST['cusine'];
     $course=$_POST['course'];
     $videol=$_POST['video'];
     $recepie=$_POST['recepie'];
     $description=$_POST['description'];
-
-    $url="http://localhost/FoodBlogger/assets/videos/$name";
+    $image=$_POST['image'];
+    
+    $name=$_SESSION['fname']+" "+$_SESSION['lname'];
 
     $dbpass="jaydeep";
     $dbhost="localhost";
@@ -17,8 +23,7 @@
     if(!$conn){
         die('Connection Error'.mysqli_connect_error());
     }
-    $insert="insert into videos(dname,cusine,course,videol,recepie,description) values('$dname','$cusine','$course','$videol','$recepie','$description');";
-
+    $insert="insert into videos(dname,cusine,course,videol,recepie,description,image,name) values('$dname','$cusine','$course','$videol','$recepie','$description','$image','$name');";
     if(!mysqli_query($conn,$insert)){
         echo"Couldnt upload";
     }
