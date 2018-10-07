@@ -33,7 +33,7 @@
     <?php
     include('connection.php');
     $url="http://localhost/FoodBlogger/modules/video.php";
-    $urli="http://localhost/FoodBlogger/assets/img/";
+
     if(!$conn){
         die('Connection Error'.mysqli_connect_error());
     }
@@ -52,7 +52,7 @@
         echo"<h1>You are searching for:".ucwords($ser)."</h1>";
         echo"<hr>";
         while($row=mysqli_fetch_assoc($result)){
-            echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$urli.$row['image']."></a>";
+            echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
             echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
             <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
             echo"Uploaded by: ".$row['name'];
@@ -73,7 +73,7 @@
             echo"<h1>".ucwords($cusinev)." Cusines</h1>";
             echo"<hr>";
             while($row=mysqli_fetch_assoc($result)){
-            echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$urli.$row['image']."></a>";
+            echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
             echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
             <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
             echo"Uploaded by: ".$row['name'];
@@ -92,7 +92,7 @@
             echo"<h1>".ucwords($navval)."s</h1>";
             echo"<hr>";
             while($row=mysqli_fetch_assoc($result)){
-                echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$urli.$row['image']."></a>";
+                echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
                 echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
                 <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
                 echo"Uploaded by: ".$row['name'];

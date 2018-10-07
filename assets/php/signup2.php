@@ -1,11 +1,11 @@
 <?php
         session_start();   
-        $fname=$_SESSION['fname'];
-        $lname=$_SESSION['lname'];
-        $email=$_SESSION['emailid'];
-        $dob=$_SESSION['dob'];
-        $phone=$_SESSION['phone'];
-        $gender=$_SESSION['gender'];
+        $fname=$_SESSION['tfname'];
+        $lname=$_SESSION['tlname'];
+        $email=$_SESSION['temailid'];
+        $dob=$_SESSION['tdob'];
+        $phone=$_SESSION['tphone'];
+        $gender=$_SESSION['tgender'];
         $pass=$_POST['pass'];
 
         $dbpass="jaydeep";
@@ -34,6 +34,14 @@
              else{
                 echo"Inserted successfully!!!";
                  $_SESSION['password']=$pass;
+                 $_SESSION['fname']=$fname;
+                 $_SESSION['lname']=$lname;
+                 $_SESSION['gender']=$gender;
+                 $_SESSION['email']=$email;
+                 $_SESSION['dob']=$dob;
+                 $_SESSION['phone']=$phone;
+                 
+                 
                 header("Location: http://localhost/FoodBlogger/index.php");
             }
         }

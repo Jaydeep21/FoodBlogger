@@ -2,14 +2,19 @@
     <html>
         <head>
             <title>Login</title>
-            
             <?php
             include('navbar.php');
             ?>
-            <link rel="stylesheet" href="../assets/css/login.css" type="text/css">
-        </head>
-        <body>
             
+            <link rel="stylesheet" href="../assets/css/login.css" type="text/css">
+            
+
+            
+        </head>
+        <body><div>
+            </div>
+            <section>
+            <div class="fullBackground"></div>
             <div class="loginbox">
                 <h1 >Login Here</h1>
                 <form onsubmit="return checkForm(this);" action="../assets/php/login.php" method="post">
@@ -22,5 +27,17 @@
                     <a href="signup.php">I'm new here</a>
                 </form>
             </div>
+            </section>
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script src="src/fullclip.js"></script>
+             <script >
+              $('.fullBackground').fullClip({
+                    images:['../assets/img/1.jpg','../assets/img/2.jpg','../assets/img/3.jpg','../assets/img/4.jpg','../assets/img/5.jpg','../assets/img/6.jpg','../assets/img/7.jpg','../assets/img/8.jpg','../assets/img/9.jpg','../assets/img/10.jpg'],
+                    transitionTime:2000,
+                    wait:5000
+                });  
+
+            </script>
         </body>
+       
     </html>

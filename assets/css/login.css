@@ -1,10 +1,13 @@
-body{
-    margin:0;
-    padding: 0;
-    /*background: url('pizza.png');*/
-    background-size: cover;
-    font-family: sans-serif;
-    background-repeat: no-repeat;
+.fullBackground {
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: absolute;
+  top: 7%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
 }
 .loginbox{
     width: 320px;
@@ -18,7 +21,7 @@ body{
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 70px 30px;
-    opacity: .8;
+    opacity: .7;
 }
 .loginbox h1{
     margin: 0;

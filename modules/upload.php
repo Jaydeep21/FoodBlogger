@@ -15,24 +15,24 @@ if(!isset($_SESSION['fname'])){
         <script src="../assets/js/upload.js"></script>
     </head>
 	<body >
-        
+        <div class="fullBackground"></div>
         <div class="loginbox" style="width: 320px;height: 730px;top:70%">
             <h1>Upload</h1>
-            <form  action="../assets/php/upload.php" method="post" onsubmit="return validationUpload(this);">
+            <form  action="../assets/php/upload.php" method="post" enctype='multipart/form-data'>
                 <p>Name of the dish:</p>
                 <input type="text" placeholder="Enter Name of the Dish" name="dname" required>
                 <label for="Cusine">Select Cusine:</label>
-                <select id="cusine" name="cusine" style="background:black">
+                <select id="cusine" name="cusine" style="background:black;color:white">
                   <option name="Indian" value="Indian">Indian</option>
                   <option name="Chinese" value="Chinese">Chinese</option>
-                  <option name="Thai"value="Thai">Thai</option>
+                  <option name="Italian"value="Italian">Italian</option>
                 </select>
                 <br>
                 <br>
                 <label for="course">Select Course:</label>
-                <select id="course" name="course" style="background:black">
+                <select id="course" name="course" style="background:black;color:white">
                   <option value="Starter">Starter</option>
-                  <option value="Main Course">Main Course</option>
+                  <option value="MainCourse">Main Course</option>
                   <option value="Desert">Desert</option>
                   <option value="Snacks">Snacks</option>
                 </select>
@@ -55,6 +55,16 @@ if(!isset($_SESSION['fname'])){
                 <input type="submit" value="Upload">
                 <br>
             </form>
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script src="src/fullclip.js"></script>
+             <script >
+              $('.fullBackground').fullClip({
+                    images:['../assets/img/1.jpg','../assets/img/2.jpg','../assets/img/3.jpg','../assets/img/4.jpg','../assets/img/5.jpg','../assets/img/6.jpg','../assets/img/7.jpg','../assets/img/8.jpg','../assets/img/9.jpg','../assets/img/10.jpg'],
+                    transitionTime:2000,
+                    wait:5000
+                });  
+
+            </script>
         </div>
         
     </body>

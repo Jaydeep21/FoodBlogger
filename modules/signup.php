@@ -8,7 +8,7 @@
         <script src="../assets/js/script.js"></script>
     </head>
 	<body >
-        
+        <div class="fullBackground"></div>
         <div class="loginbox" style="width: 320px;height: 830px;top:70%">
             <h1>Sign up</h1>
             <form  action="../assets/php/signup.php" method="post" onsubmit="return checkForm(this);">
@@ -31,7 +31,18 @@
                 <input type='submit' id="submit" name="submit"><br>
                 <a href="login.php">Already a user</a>
             </form>
+            
         </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script src="src/fullclip.js"></script>
+             <script >
+              $('.fullBackground').fullClip({
+                    images:['../assets/img/1.jpg','../assets/img/2.jpg','../assets/img/3.jpg','../assets/img/4.jpg','../assets/img/5.jpg','../assets/img/6.jpg','../assets/img/7.jpg','../assets/img/8.jpg','../assets/img/9.jpg','../assets/img/10.jpg'],
+                    transitionTime:2000,
+                    wait:5000
+                });  
+
+            </script>
         
     </body>
     <?php
