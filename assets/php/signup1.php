@@ -9,7 +9,7 @@
         echo "$result";
     }
     else{
-        header("Location: http://localhost/FoodBlogger/modules/forgot1.php");
+        header("Location: http://localhost/FoodBlogger/modules/signup2.php");
     }
 
 ?>

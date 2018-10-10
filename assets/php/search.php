@@ -54,7 +54,7 @@
         while($row=mysqli_fetch_assoc($result)){
             echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
             echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-            <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
+            <p><bold>Description:</bold>&ensp;".base64_decode($row['description'])."</p>";
             echo"Uploaded by: ".$row['name'];
             echo"<br><br><br></div><hr>";
         }
@@ -75,7 +75,7 @@
             while($row=mysqli_fetch_assoc($result)){
             echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
             echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-            <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
+            <p><bold>Description:</bold>&ensp;".base64_decode($row['description'])."</p>";
             echo"Uploaded by: ".$row['name'];
             echo"<br><br><br></div><hr>";
         }
@@ -94,7 +94,7 @@
             while($row=mysqli_fetch_assoc($result)){
                 echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
                 echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-                <p><bold>Description:</bold>&ensp;".$row['description']."</p>";
+                <p><bold>Description:</bold>&ensp;".base64_decode($row['description'])."</p>";
                 echo"Uploaded by: ".$row['name'];
                 echo"<br><br><br></div><hr>";
              }
