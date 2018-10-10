@@ -5,7 +5,7 @@ function validationUpload(form){
         form.dname.focus();
         return false;
        }
-    if(!form.video.value.split(".") !="mp4")
+    if(form.video.value.split(".") !="mp4")
         {
             alert("You are allowed to upload mp4 files only");
             form.video.focus();

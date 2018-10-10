@@ -7,7 +7,7 @@ if (isset($_POST['submit'])){
     
     $code=$_SESSION['captcha'];
     $user=$_POST['chek'];
-    echo $_SESSION['error'];
+    
     if($code!=$user){
         header("location:http://localhost/FoodBlogger/modules/signup.php?error=InvalidCaptcha");
     }
@@ -20,12 +20,12 @@ if (isset($_POST['submit'])){
     $dob=$_POST['dob'];
     $gender=$_POST['gender'];
     
-    $_SESSION['fname'] = $fname;
-    $_SESSION['lname'] = $lname;
-    $_SESSION['emailid'] = $email;
-    $_SESSION['phone'] = $contact;
-    $_SESSION['dob'] = $dob;
-    $_SESSION['gender'] = $gender;
+    $_SESSION['tfname'] = $fname;
+    $_SESSION['tlname'] = $lname;
+    $_SESSION['temailid'] = $email;
+    $_SESSION['tphone'] = $contact;
+    $_SESSION['tdob'] = $dob;
+    $_SESSION['tgender'] = $gender;
     
     $dbpass="jaydeep";
     $dbhost="localhost";

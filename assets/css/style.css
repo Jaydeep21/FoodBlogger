@@ -1,11 +1,14 @@
-body{
-	background-image: url('pizza.png');
-	margin:0;
-	height:100%;
-	background-size: cover;
-	background-color: white;
-    background-repeat: no-repeat;
-}	
+.fullBackground {
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: absolute;
+  top: 7%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+}
 h1{
    
 }

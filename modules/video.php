@@ -1,229 +1,123 @@
 <?php
+        ob_start();
         include('navbar.php');
         if(!isset($_SESSION['emailid']))
         {
+            
             header("location: http://localhost/FoodBlogger/modules/login.php");
         }
         
         include('../assets/php/connection.php');
         $pid = $_REQUEST['p_id'];
+        $_SESSION['pid']=$pid;
     ?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Video</title>
+    <title>Video</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-      hr{
-          width:150px;
-          height:2px;
-          background-color: black;
-          margin-left:0;
-      }
-      video{
-          position: absolute;
-          top:20%;
-          left:10%;
-          height: 500px;
-          width :700px;
-      }
-      .recipiebox{
-    width: 30%;
-    height: 75%;
-    background: black;
-    color:white;
-    top: 58%;
-    left: 80%;
-    opacity: .8;
-    position:absolute;
-    transform: translate(-50%,-50%);
-    box-sizing: border-box;
-    padding: 50px 30px;
-    opacity: .7;
-      }
-      .descriptionbox,.commentsbox{
-          width: 1150px;
-    height: 250px;
-    background: black;
-    color:white;
-    left: 53%;
-    opacity: .8;
-    position:absolute;
-    transform: translate(-50%,-50%);
-    box-sizing: border-box;
-    padding: 20px 30px;
-    opacity: .7;
-      }
-.iconbox{
-          position: absolute;
-          top:110%;
-          left:10%;
-          font-size: 40px;
-      }
-.glyphicon-thumbs-up:hover,.glyphicon-thumbs-down:hover{
-          color: blue;
-          cursor:pointer;
-          
-      }
-.commentsbox input[type="textarea"]{
-          border:none;
-        border-bottom: 1px solid white;
-        background: transparent;
-        outline: none;
-        height:40px;
-        color: white;
-        font-size: 16px;
-        width: 100%;
-      }
-.commentsbox input[type="submit"]
-{
-    width: 25%;
-    border:none;
-    border-radius: 20px;
-    outline:none;
-    height: 40px;
-    background: red;
-    color: white;
-    float:right;
-    font-size: 18px;
-}
-.commentsbox input[type="submit"]:hover{
-    cursor: pointer;
-    background: yellow;
-    color:black;
-}
-      .heading{
-          position:fixed;
-          display:block;
-          
-      }
-    </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script>
-    
-    function likeFunction(){
-        document.getElementById("like").style.color="blue";
-        document.getElementById("dislike").style.color="black";
-    }
-    function dislikeFunction(){
-        document.getElementById("dislike").style.color="blue";
-        document.getElementById("like").style.color="black";
-    }
-    $(document).ready(function(){
+        $(document).ready(function(){
                       var commentCount=2;
-        $(".showmore").click(function(){
-            commentCount=commentCount+2;
+                      var commentCurrentCount = 0;
+        $("#showmore").click(function(){
+            commentCount=commentCount+2,
+            commentCurrentCount=commentCurrentCount+2
             $(".comment").load("../assets/php/load-comments.php",{
-                commentnewCount:commentCount
+                commentnewCount:commentCount,
+                commentCurrentCount:commentCurrentCount
             });
         });
     });
-           
-
-        
     </script>
-    
+    <style>
+        #recepie{
+            height: 103vh;
+            overflow-y:scroll;
+        }
+    </style>
 </head>
     <body>
-                
-        <?php
         
-    $url="http://localhost/FoodBlogger/assets/video/";
-    
-    if(!$conn){
-        die('Connection Error'.mysqli_connect_error());
-    }
-        $qry="select * from videos where id='$pid'";
-        $result=mysqli_query($conn,$qry);
-        if(!$result){
-            echo"<script>alert query error</script>";
-        }
-        else{
-            foreach($result as $row){
-        echo"<div>
-            <video height=500px width=500px src=".$url,$row['videol']." controls></video>
-            </div>";
-        echo"<div class=recipiebox>
-            <h1>Recipie</h1>
-            <hr>
-            <p>".$row['recepie']."</p>
-            </div>";
-        echo"<div class=heading>
-            <h1>".$row['dname']."</h1></div>";
-        ?>
-        <div class="iconbox">
-        <i class="glyphicon glyphicon-thumbs-up" onclick="return likeFunction(this);" id="like"></i>&ensp;&ensp;
-        <i class="glyphicon glyphicon-thumbs-down" onclick="return dislikeFunction(this);" id="dislike"></i>&ensp;&ensp;
-        </div>
-        <?php
-        
-            echo"<div class=descriptionbox style=top:145%;>
-            <h1>Desctiption</h1>
-            <hr>
-            <i class=glyphicon glyphicon-chevron-down style=position: absolute;
-          top:80%;
-          left:95%;></i>
-            
-            <p class=desc>".$row['description']."</p>
-        </div>";
-            }
-        }
-        ?>
-        
-        <div class="commentsbox" style="top:225%;height:700px">
-            <h1>Comments</h1>
-            <hr>
+        <div class="container-fluid">
+            <br>
+            <br>
             <?php
-            
-                $sql="select * from comments limit 2";
-                $result=mysqli_query($conn,$sql);
-                if(mysqli_num_rows($result)>0){
-                    while($row=mysqli_fetch_assoc($result)){
-                        echo"<p>";
-                        echo $row['comment'];
-                        echo"<br>";
-                        echo $row['author'];
-                        echo"</p>";
-                    }
-                    
-                }
-                else{
-                    echo"There are no comments";
-                }
-            
-            ?>
-            <p class="comment"></p>
-            <input type="submit" class="showmore" value="Show More Comments">
-            <br><br>
-            
-            <input type="textarea" placeholder="Comment here" class="cmtarea">
-            <br><br>
-            <input type="submit" name="addcomment" class="addcomment" value="Submit" >
-            
-        </div>
-                
-    </body>
-    <?php
-        include('footer.php');
-    ?>
+        
     
-</html>
-<!--$(".addcomment").click(function(){
-    alert("working");
-    var comment=$('cmtarea').val();
-    var author=$_SESSION['fname']+" "+$_SESSION['lname'];
-    var pid=<?php $pid ?>;
-    if(comment!=''){
-        $.ajax({
-            url:"../assets/php/store-comments.php",
-            method:"POST",
-            data:{comment:comment,author:author,pid:pid},
-        });
-    }
-    }
+    
+        if(!$conn){
+            die('Connection Error'.mysqli_connect_error());
+        }
+            $qry="select * from videos where id='$pid'";
+            $result=mysqli_query($conn,$qry);
+            if(!$result){
+                echo"<script>alert('query error')</script>";
+            }
+            else{
+                foreach($result as $row){
+                    echo"<div class='jumbotron col-8 d-inline-block'>";
+                    echo"<h1>Video</h1>";
+                    echo"<hr class='my-2'>";
+                    echo"<video height=75% width=100% src=".preg_replace('/\s+/', '', $row['videol'])." controls></video>";
+                    echo"</div>";
+                    echo"<div class='jumbotron col-4 d-inline-block float-right' id='recepie'>";
+                    echo"<h1>Recipe</h1>";
+                    echo"<hr class='my-2'>";
+                    echo"<p class='text-center'>".base64_decode($row['recepie'])."</p>";
+                    echo"</div>";
+                    echo"<br><br>";
+                    echo"<h1>".$row['dname']."</h1>";
+                    echo"<br><br>";
+                    echo"<div class='jumbotron'>
+                            <h1>Description</h1>
+                            <hr class='my-2'>
+                            <p class='text-center'>".base64_decode($row['description'])."</p>
+                        </div>";
+                }}
+                    echo"<br><br>";
+                    echo"<div class='jumbotron'>
+                            <h1>Comments</h1>
+                            <hr class='my-2'>";
+                
+                            $sql='select * from comments limit 2';
+                            $result=mysqli_query($conn,$sql);
+                            if(mysqli_num_rows($result)>0){
+                                while($row=mysqli_fetch_assoc($result)){
+                                    echo '<p  class="text-center">';
+                                    echo base64_decode($row['comment']);
+                                    echo '</p >';
+                                    echo"<br>";
+                                    echo"<h3 class='text-center'>-"; 
+                                    echo $row['author'];
+                                    echo"</h3><hr class='my-2'>";
+                                    
+                                }
 
-);-->
+                            }
+                            else{
+                                echo 'There are no comments';
+                            }
+            
+                    ?>
+                        
+                        <p class="text-center comment"></p>
+                        <a class='btn border-danger btn-lg text-danger float-right'  role='button' id="showmore">Show More Comments</a>
+                        <br>
+                        <br>
+                        <br>
+                        <form action="../assets/php/store-comments.php" method="post">
+                            <div class='input-group'>
+                              <input type='text' class='form-control col-12' placeholder='Comment here' name="addcomment">
+                                <div class='input-group-append'>
+                                    <button class='btn border-danger text-danger' type='submit'>Comment</button>
+                                  </div>
+                            </div>
+                        </form>
+        </div>
+    </body>
+</html>
