@@ -7,12 +7,15 @@
     $dname=$_POST['dname'];
     $cusine=$_POST['cusine'];
     $course=$_POST['course'];
-    $video_name=$_FILES['video']['name'];
-    $video_temp=$_FILES['video']['tmp_name'];
-    $image_name=$_FILES['image']['name'];
-    $image_temp=$_FILES['image']['tmp_name'];
-    $recepie=$_POST['recepie'];
-    $description=$_POST['description'];
+    $video_name=preg_replace('/\s+/', '',$_FILES['video']['name']);
+    $video_temp=preg_replace('/\s+/', '',$_FILES['video']['tmp_name']);
+    $image_name=preg_replace('/\s+/', '',$_FILES['image']['name']);
+    $image_temp=preg_replace('/\s+/', '',$_FILES['image']['tmp_name']);
+    $rawrecipe=$_POST['recepie'];
+    $rmvspace=str_replace(' ','&nbsp',$rawrecipe);
+    $nxtline=nl2br($rmvspace);
+    $recepie=base64_encode($nxtline);
+    $description=base64_encode($_POST['description']);
     
     
     move_uploaded_file($video_temp,"../video/".$video_name);
