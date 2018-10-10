@@ -1,0 +1,81 @@
+.fullBackground {
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  position: fixed;
+  top: 7%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+}
+.loginbox{
+    background: #000;
+    color:#fff;
+    left: 50%;
+    position:absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 40px 30px;
+    opacity: .8;
+}
+h1{
+    margin: 0;
+    padding-bottom:20px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+.loginbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.loginbox input{
+    margin-bottom: 20px;
+}
+.loginbox input[type="radio"]{
+
+}
+.loginbox textarea,input[type="text"],input[type="email"],input[type="password"],input[type="tel"]{
+    border:none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    outline: none;
+    height:40px;
+    color: white;
+    font-size: 16px;
+    width: 100%;
+}
+input[type="date"]{
+    color:white;
+    background-color: black;
+    width: 100%;
+    
+}
+.loginbox input[type="submit"]
+{
+    width: 100%;
+    border:none;
+    border-radius: 20px;
+    outline:none;
+    height: 40px;
+    background: red;
+    color: white;
+    font-size: 18px;
+}
+.loginbox input[type="submit"]:hover{
+    cursor: pointer;
+    background: yellow;
+    color:black;
+}
+.loginbox a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgray;
+}
+.loginbox a:hover{
+    color: yellow;
+}
