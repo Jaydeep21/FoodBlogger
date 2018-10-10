@@ -60,10 +60,10 @@ else{
                 </ul>
                 <ul class="navbar-nav">
                 <form class="navbar-form align-self-center" action="http://localhost/FoodBlogger/assets/php/search.php" method="GET">
-                  <div class="input-group p-3">
+                  <div class="input-group p-4">
                     <input type="texti" class="form-control" placeholder="Search" name="search" id="search">
                     <div class="input-group-append">
-                      <button class="btn btn-secondary p-2" type="button">
+                      <button class="btn btn-secondary" type="submit" name="submit">
                         <i class="fa fa-search"></i>
                       </button>
                     </div>
@@ -79,8 +79,8 @@ else{
                         <a class="nav-link p-4" href="http://localhost/FoodBlogger/modules/logout.php">Logout</a>
                     </li>
                     <?php } else{?>
-                    <li class="nav-item p-4">
-                        <a class="nav-link" href="http://localhost/FoodBlogger/modules/login.php">Login</a> 
+                    <li class="nav-item ">
+                        <a class="nav-link p-4" href="http://localhost/FoodBlogger/modules/login.php">Login</a> 
                     </li>
                     <?php }?>
         

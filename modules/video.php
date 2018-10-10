@@ -1,7 +1,9 @@
 <?php
+        ob_start();
         include('navbar.php');
         if(!isset($_SESSION['emailid']))
         {
+            
             header("location: http://localhost/FoodBlogger/modules/login.php");
         }
         
@@ -61,12 +63,12 @@
                     echo"<div class='jumbotron col-8 d-inline-block'>";
                     echo"<h1>Video</h1>";
                     echo"<hr class='my-2'>";
-                    echo"<video height=75% width=100% src=".$row['videol']." controls></video>";
+                    echo"<video height=75% width=100% src=".preg_replace('/\s+/', '', $row['videol'])." controls></video>";
                     echo"</div>";
                     echo"<div class='jumbotron col-4 d-inline-block float-right' id='recepie'>";
-                    echo"<h1>Recepie</h1>";
+                    echo"<h1>Recipe</h1>";
                     echo"<hr class='my-2'>";
-                    echo"<p class='text-center'>".$row['recepie']."</p>";
+                    echo"<p class='text-center'>".base64_decode($row['recepie'])."</p>";
                     echo"</div>";
                     echo"<br><br>";
                     echo"<h1>".$row['dname']."</h1>";
@@ -74,7 +76,7 @@
                     echo"<div class='jumbotron'>
                             <h1>Description</h1>
                             <hr class='my-2'>
-                            <p class='text-center'>".$row['description']."</p>
+                            <p class='text-center'>".base64_decode($row['description'])."</p>
                         </div>";
                 }}
                     echo"<br><br>";
@@ -87,7 +89,7 @@
                             if(mysqli_num_rows($result)>0){
                                 while($row=mysqli_fetch_assoc($result)){
                                     echo '<p  class="text-center">';
-                                    echo $row['comment'];
+                                    echo base64_decode($row['comment']);
                                     echo '</p >';
                                     echo"<br>";
                                     echo"<h3 class='text-center'>-"; 

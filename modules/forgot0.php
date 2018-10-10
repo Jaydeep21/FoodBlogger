@@ -1,20 +1,22 @@
+<?php session_start(); 
+$email=$_SESSION['email'];
+?>
 <html>
 	<head>
-		<title>Verification</title>
+		<title>Sign up</title>
         <link rel="stylesheet" href="../assets/css/signup.css" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       <?php
-        include('navbar.php');
-        include('footer.php');
-        ?>
+        <script ></script>
+       
+       
     </head>
 	<body >
         <div class="fullBackground"></div>
-        <div class="loginbox" style="width: 400px;height: 380px;top:50%;">
+        <div class="loginbox" style="width: 380px;height: 380px;top:50%;">
             <h1>Sign up</h1>
-            <form action="signup2.php" method="post">
-                <p>Sent on Your Email-id:&ensp;<?php echo $_SESSION['emailid']; ?></p>
+            <form action="../assets/php/forgot0.php" method="post">
+                <p>Sent on Your Email id:&ensp;<?php echo $email;?></p>
                 <br>
                 <br>
                 <p>Enter OTP:</p>
@@ -32,5 +34,6 @@
 
             </script>
         </div>
+        
     </body>
 </html>
