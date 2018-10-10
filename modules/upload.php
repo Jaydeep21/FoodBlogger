@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 include('navbar.php');
 if(!isset($_SESSION['fname'])){
     header("location:http://localhost/FoodBlogger/modules/login.php");
