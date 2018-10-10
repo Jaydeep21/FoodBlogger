@@ -33,7 +33,7 @@ $_SESSION['random']=$a;
             $mail->SMTPAuth=true;
             $mail->SMTPSecure='tls';
             $mail->Username='jaydeepdharamsey21@gmail.com';
-            $mail->Password='Jinali@29';
+            $mail->Password='';
             
             $mail->setFrom('jaydeepdharamsey21@gmail.com');
             $mail->addAddress($em);
