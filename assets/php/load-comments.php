@@ -7,7 +7,8 @@ header('Content-Type: text/css');
                 include('connection.php');
                 $commentnewCount=$_POST['commentnewCount'];
                 $commentCurrentCount=$_POST['commentCurrentCount'];
-                $sql="select * from comments limit $commentCurrentCount,$commentnewCount";
+                $commentid=$_POST['commentid'];
+                $sql="select * from comments where p_id='$commentid' limit $commentCurrentCount,$commentnewCount";
                 $result=mysqli_query($conn,$sql);
                 if(mysqli_num_rows($result)>0){
                     echo"<script>

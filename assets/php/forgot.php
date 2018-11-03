@@ -2,7 +2,7 @@
 
 session_start();
 
-$em=$_POST['email'];
+$em=mysqli_real_escape_string($conn,$_POST['email']);
 $_SESSION['email']=$em;
 
 include('connection.php');
@@ -33,7 +33,7 @@ $_SESSION['random']=$a;
             $mail->SMTPAuth=true;
             $mail->SMTPSecure='tls';
             $mail->Username='jaydeepdharamsey21@gmail.com';
-            $mail->Password='';
+            $mail->Password=;
             
             $mail->setFrom('jaydeepdharamsey21@gmail.com');
             $mail->addAddress($em);

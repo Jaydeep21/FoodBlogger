@@ -1,24 +1,38 @@
 <?php
     session_start();
+    include('connection.php');
 if(isset($_GET['error'])){
     echo "<script>alert(".$_GET['error'].");</script>";
 }
 if (isset($_POST['submit'])){
     
-    $code=$_SESSION['captcha'];
-    $user=$_POST['chek'];
-    
-    if($code!=$user){
-        header("location:http://localhost/FoodBlogger/modules/signup.php?error=InvalidCaptcha");
+    function CheckCaptcha($userResponse) {
+        $fields_string = '';
+        $fields = array(
+            'secret' => '6Ld7mXQUAAAAAFZhouVhfgZ8vpeSDctqIp0UgnVF',
+            'response' => $userResponse
+        );
+        foreach($fields as $key=>$value)
+        $fields_string .= $key . '=' . $value . '&';
+        $fields_string = rtrim($fields_string, '&');
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/siteverify');
+        curl_setopt($ch, CURLOPT_POST, count($fields));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, True);
+        $res = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($res, true);
     }
-    else{    
-    
-    $fname=$_POST['fname'];
-    $lname=$_POST['lname'];
-    $email=$_POST['emailid'];
-    $contact=$_POST['phone'];
-    $dob=$_POST['dob'];
-    $gender=$_POST['gender'];
+    // Call the function CheckCaptcha
+    $result = CheckCaptcha($_POST['g-recaptcha-response']);
+    if ($result['success']) {
+        $fname=$_POST['fname'];
+    $lname=mysqli_real_escape_string($conn,$_POST['lname']);
+    $email=mysqli_real_escape_string($conn,$_POST['emailid']);
+    $contact=mysqli_real_escape_string($conn,$_POST['phone']);
+    $dob=mysqli_real_escape_string($conn,$_POST['dob']);
+    $gender=mysqli_real_escape_string($conn,$_POST['gender']);
     
     $_SESSION['tfname'] = $fname;
     $_SESSION['tlname'] = $lname;
@@ -27,18 +41,11 @@ if (isset($_POST['submit'])){
     $_SESSION['tdob'] = $dob;
     $_SESSION['tgender'] = $gender;
     
-    $dbpass="jaydeep";
-    $dbhost="localhost";
-    $dbname="foodblog";
-    $dbuser="root";
+    
     
     $a=rand(1000,1000000);
     $_SESSION['random']=$a;
         
-    $conn=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
-    if(!$conn){
-        die('Connection Error'.mysqli_connect_error());
-        }
     $SELECT="SELECT email FROM signup where email='$email'";
             
         if(!mysqli_query($conn,$SELECT)){
@@ -61,7 +68,7 @@ if (isset($_POST['submit'])){
             $mail->SMTPAuth=true;
             $mail->SMTPSecure='tls';
             $mail->Username='jaydeepdharamsey21@gmail.com';
-            $mail->Password='';
+            $mail->Password=;
             
             $mail->setFrom('jaydeepdharamsey21@gmail.com');
             $mail->addAddress($_POST['emailid']);
@@ -80,9 +87,11 @@ if (isset($_POST['submit'])){
             }
             }
         }
-        }
-    
-    
+	
+    } else {
+        // If the CAPTCHA box wasn't checked
+       echo '<script>alert("Error Message");</script>';
+    }
 }
 else{
     echo"gadbad";

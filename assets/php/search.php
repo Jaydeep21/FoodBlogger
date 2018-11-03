@@ -5,31 +5,47 @@
 <head>
     <title>Result</title>
     <style>
-        a{
-            text-decoration: none;
-        }
+        
         body{
             display: block;
+            overflow-x: hidden;
         }
         img
         {
-            position: absolute;
+            position: relative;
             left:10px;
             width:200px;
-            height: 140px;
+            height:140px;
             float:left;
             border:1px solid black;
+
         }
         .product{
             position: relative;
-            left:230px;
+            left:20px;
+
+        }
+       
+        @media only screen and (max-width: 700px){
+            .product h1{
+                font-size: 40px;
+                left:0px;
+                padding-left:25px; 
+            }
+            .product p{
+                font-size: 20px;
+
+            }
+            img{
+                width:300px;
+                height:200px;
+            }
+            
         }
     </style>
     
 </head>
-<body>
-    
-    
+<body>  
     <?php
     include('connection.php');
     $url="http://localhost/FoodBlogger/modules/video.php";
@@ -52,11 +68,12 @@
         echo"<h1>You are searching for:".ucwords($ser)."</h1>";
         echo"<hr>";
         while($row=mysqli_fetch_assoc($result)){
-            echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
-            echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-            <p><bold>Description:</bold>&ensp;".base64_decode($row['description'])."</p>";
-            echo"Uploaded by: ".$row['name'];
-            echo"<br><br><br></div><hr>";
+            ?> <br> 
+            <div class='product'><a style='text-decoration: none' href=<?php echo $url;?>?p_id=<?php echo  $row['id'];?>><img src=<?php echo $row['image'];?>><h1>&ensp;<?php echo $row['dname'];?></h1></a>
+            <p><bold>&ensp;&ensp;&ensp;Description:</bold>
+                <?php echo base64_decode($row['description']);?><br><br>
+            &ensp;&ensp;&ensp;Uploaded by: <?php echo $row['name'];?>
+            </p><br></div><hr><?php
         }
     }
     }
@@ -70,14 +87,15 @@
             echo"<script>alert('query error');</script>";
         }
         else{
-            echo"<h1>".ucwords($cusinev)." Cusines</h1>";
+            echo"<h1>".ucwords($cusinev)." Cuisines</h1>";
             echo"<hr>";
             while($row=mysqli_fetch_assoc($result)){
-            echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
-            echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-            <p><bold>Description:</bold>&ensp;".base64_decode($row['description'])."</p>";
-            echo"Uploaded by: ".$row['name'];
-            echo"<br><br><br></div><hr>";
+                ?>
+           <div class='product'><a style='text-decoration: none' href=<?php echo $url;?>?p_id=<?php echo  $row['id'];?>><img src=<?php echo $row['image'];?>><h1>&ensp;<?php echo $row['dname'];?></h1></a>
+            <p><bold>&ensp;&ensp;&ensp;Description:</bold>
+                <?php echo base64_decode($row['description']);?><br><br>
+            &ensp;&ensp;&ensp;Uploaded by: <?php echo $row['name'];?>
+            </p><br></div><hr><?php
         }
         }
     }
@@ -91,12 +109,14 @@
         else{
             echo"<h1>".ucwords($navval)."s</h1>";
             echo"<hr>";
-            while($row=mysqli_fetch_assoc($result)){
-                echo"<a href=".$url."?p_id=" . $row['id'] . "><img src=".$row['image']."></a>";
-                echo"<div class='product'><a href=".$url."?p_id=" . $row['id'] . "><h1>".$row['dname']."</h1></a>
-                <p><bold>Description:</bold>&ensp;".base64_decode($row['description'])."</p>";
-                echo"Uploaded by: ".$row['name'];
-                echo"<br><br><br></div><hr>";
+            while($row=mysqli_fetch_assoc($result)){?>
+                <a style='text-decoration: none' href=<?php echo $url;?>?p_id=<?php echo $row['id']; ?>><img src=<?php echo $row['image'];?>></a>
+                <div class='product'><a href=<?php echo $url;?>?p_id=<?php echo $row['id'];?>><h1><?php echo $row['dname'];?></h1></a>
+                <p><bold>Description:</bold>&ensp;<?php 
+                echo base64_decode($row['description']);?><br><br>
+                Uploaded by: <?php echo $row['name'];?>
+                </p></div><hr>
+             <?php
              }
         }
     }

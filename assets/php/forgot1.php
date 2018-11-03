@@ -1,9 +1,10 @@
 <?php
     session_start();
-    $email=$_SESSION['email'];
-    $password=$_POST['password'];
-
     include('connection.php');
+    $email=$_SESSION['email'];
+    $password=mysqli_real_escape_string($conn,$_POST['password']);
+
+    
     if(!$conn){
         $result="Connection error".mysqli_connect_error();
         echo $result;

@@ -1,10 +1,11 @@
 <?php
 
     session_start();
+    include('connection.php');
     if(!isset($_SESSION['fname'])){
         header('location:http://localhost/FoodBlogger/modules/login.php');
     }
-    $dname=$_POST['dname'];
+    $dname=mysqli_real_escape_string($conn,$_POST['dname']);
     $cusine=$_POST['cusine'];
     $course=$_POST['course'];
     $video_name=preg_replace('/\s+/', '',$_FILES['video']['name']);
@@ -24,12 +25,12 @@
     $imagel="http://localhost/FoodBlogger/assets/img/$image_name";
     $name=$_SESSION['fname']." ".$_SESSION['lname'];
 
-    include('connection.php');
+    
     if(!$conn){
         die('Connection Error'.mysqli_connect_error());
     }
     $insert="insert into videos(dname,cusine,course,videol,recepie,description,image,name) values('$dname','$cusine','$course','$videol','$recepie','$description','$imagel','$name');";
-    echo $insert;
+    
     if(!mysqli_query($conn,$insert)){
         echo"Couldnt upload";
     }
