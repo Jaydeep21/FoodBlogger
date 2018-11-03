@@ -4,7 +4,7 @@ include('navbar.php');
 if(!isset($_SESSION['fname'])){
     header("location:http://localhost/FoodBlogger/modules/login.php");
 }
-
+include('footer.php');
 ?>
 <html>
 	<head>
@@ -59,7 +59,7 @@ if(!isset($_SESSION['fname'])){
             <script src="src/fullclip.js"></script>
              <script >
               $('.fullBackground').fullClip({
-                    images:['../assets/img/1.jpg','../assets/img/2.jpg','../assets/img/3.jpg','../assets/img/4.jpg','../assets/img/5.jpg','../assets/img/6.jpg','../assets/img/7.jpg','../assets/img/8.jpg','../assets/img/9.jpg','../assets/img/10.jpg'],
+                    images:['../assets/img/1.jpg','../assets/img/2.jpeg','../assets/img/2.jpg','../assets/img/3.jpg','../assets/img/4.jpg','../assets/img/5.jpg','../assets/img/6.jpg','../assets/img/7.jpg','../assets/img/8.jpg','../assets/img/9.jpg','../assets/img/10.jpg'],
                     transitionTime:2000,
                     wait:5000
                 });  
@@ -68,8 +68,4 @@ if(!isset($_SESSION['fname'])){
         </div>
         
     </body>
-    <?php
-    include('footer.php');
-
-    ?>
 </html>

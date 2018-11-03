@@ -6,10 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="../assets/js/script.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
 	<body >
         <div class="fullBackground"></div>
-        <div class="loginbox" style="width: 320px;height: 830px;top:70%">
+        <div class="loginbox" style="width: 350px;height: 950px;top:90%">
             <h1>Sign up</h1>
             <form  action="../assets/php/signup.php" method="post" onsubmit="return checkForm(this);">
                 <p>First Name:</p>
@@ -26,8 +27,10 @@
                 <p>Male:<input type='radio' name='gender' value='m' ></p>
                 <p>Female:<input type='radio' name='gender' value='f' ></p>
                 <p>Other:<input type="radio" name="gender" value='o' ></p><br>
-                <p style="display:inline">Captcha:</p><img src="../assets/php/captcha.php" alt="couldnt generate captacha">
-                <input type="text" placeholder="Enter the captcha code here" name="chek">
+                <p style="display:inline">Captcha:</p>
+                <div class="g-recaptcha" data-sitekey="6Ld7mXQUAAAAANA3hCCd13QCQ0roGL_V6vQ-k6xG"></div>
+                <br><br>
+                
                 <input type='submit' id="submit" name="submit"><br>
                 <a href="login.php">Already a user</a>
             </form>
@@ -37,7 +40,7 @@
             <script src="src/fullclip.js"></script>
              <script >
               $('.fullBackground').fullClip({
-                    images:['../assets/img/1.jpg','../assets/img/2.jpg','../assets/img/3.jpg','../assets/img/4.jpg','../assets/img/5.jpg','../assets/img/6.jpg','../assets/img/7.jpg','../assets/img/8.jpg','../assets/img/9.jpg','../assets/img/10.jpg'],
+                    images:['../assets/img/1.jpg','../assets/img/2.jpeg','../assets/img/2.jpg','../assets/img/3.jpg','../assets/img/4.jpg','../assets/img/5.jpg','../assets/img/6.jpg','../assets/img/7.jpg','../assets/img/8.jpg','../assets/img/9.jpg','../assets/img/10.jpg'],
                     transitionTime:2000,
                     wait:5000
                 });  
