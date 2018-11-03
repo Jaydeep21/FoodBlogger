@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2018 at 01:27 PM
+-- Generation Time: Nov 03, 2018 at 03:38 PM
 -- Server version: 5.7.21-log
 -- PHP Version: 7.2.0
 
@@ -36,6 +36,19 @@ CREATE TABLE `comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`c_id`, `comment`, `author`, `p_id`) VALUES
+(1, 'WWVzcw==', 'Abhishek Patel', 38),
+(8, 'd293', 'Jaydeep Dharamsey', 38),
+(9, 'dmVyeSAidGFzdHkiOw==', 'nimeesh Bagwe', 39),
+(11, 'dGVzdGluZyBjb21tZW50cw==', 'Jaydeep Dharamsey', 39),
+(12, 'eXVtbXkg', 'Jaydeep Dharamsey', 39),
+(13, 'VmVyeSBuaWNlIHZpZGVv', 'Jaydeep Dharamsey', 38),
+(14, 'WXVtbXkg', 'Jaydeep Dharamsey', 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -53,7 +66,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `c_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `c_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

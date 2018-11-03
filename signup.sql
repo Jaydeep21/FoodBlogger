@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2018 at 01:27 PM
+-- Generation Time: Nov 03, 2018 at 03:39 PM
 -- Server version: 5.7.21-log
 -- PHP Version: 7.2.0
 
@@ -44,7 +44,12 @@ CREATE TABLE `signup` (
 --
 
 INSERT INTO `signup` (`id`, `fname`, `lname`, `email`, `phone`, `dob`, `gender`, `password`) VALUES
-(2, 'Jaydeep', 'Dharamsey', 'jaydeepdharamsey21@gmail.com', 8080436593, '1998-04-21', 'm', '1234asdf');
+(2, 'Jaydeep', 'Dharamsey', 'jaydeepdharamsey21@gmail.com', 8080436593, '1998-04-21', 'm', 'asdf1234'),
+(3, 'Abhishek', 'Patel', 'abhishekrock171@gmail.com', 9769602025, '1998-11-04', 'm', 'abhi1234'),
+(4, 'Mihit', 'Chheda', 'rockingmihit@gmail.com', 9820902280, '1998-11-12', 'm', 'mihit1234'),
+(5, 'Nimeesh', 'Bagwe', 'bagwe.nimeesh4@gmail.com', 9869187670, '1999-04-06', 'm', 'nimya1234'),
+(6, 'Prasad', 'Awate', 'prasad.awate@sakec.ac.in', 8097651700, '1998-08-24', 'm', 'prasad1234'),
+(7, 'Swati', 'Gajbhiye', 'swati.gajbhiye@sakec.ac.in', 1234567890, '1998-04-21', 'f', 'swati1234');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +69,7 @@ ALTER TABLE `signup`
 -- AUTO_INCREMENT for table `signup`
 --
 ALTER TABLE `signup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
